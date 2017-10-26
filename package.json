@@ -1,0 +1,29 @@
+{
+  "name": "future_shop",
+  "version": "1.0.0",
+  "description": "An ecommerce shopping system currently made for CS546 final project and may be in the future extended to a fully functional system that can be used commercially.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zxuqian/future_shop.git"
+  },
+  "keywords": [
+    "Ecommerce",
+    "shopping",
+    "shopping",
+    "system",
+    "shop",
+    "online",
+    "shopping"
+  ],
+  "author": "Xuqian Zhang, Song Wang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zxuqian/future_shop/issues"
+  },
+  "homepage": "https://github.com/zxuqian/future_shop#readme"
+}
