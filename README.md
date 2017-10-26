@@ -6,12 +6,12 @@ An ecommerce shopping system currently built for CS546 final project and may be 
 
 ```
 root
-  |-- config Utils to connect mongodb and get collections
-  |-- data CRUD operations on documents
-  |-- public Client-side js/css/image resources
-  |-- routes Express routings
-  |-- site_content Uploaded files and images
-  |-- views HTML pages and templates
+  |-- config        Utils to connect mongodb and get collections
+  |-- data          CRUD operations on documents
+  |-- public        Client-side js/css/image resources
+  |-- routes        Express routings
+  |-- site_content  Uploaded files and images
+  |-- views         HTML pages and templates
   
 ```
 
