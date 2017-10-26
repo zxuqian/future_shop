@@ -1,6 +1,6 @@
 # Future shop
 
-An ecommerce shopping system currently made for CS546 final project and may be in the future extended to a fully functional system that can be used commercially.
+An ecommerce shopping system currently built for CS546 final project and may be in the future extended to a fully functional system that can be used commercially.
 
 ## Project structure
 
