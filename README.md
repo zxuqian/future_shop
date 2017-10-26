@@ -8,9 +8,14 @@ An ecommerce shopping system currently built for CS546 final project and may be 
 root
   |-- config        Utils to connect mongodb and get collections
   |-- data          CRUD operations on documents
-  |-- public        Client-side js/css/image resources
+  |-- public        Client-side resources
+    |-- css         Style files
+    |-- images      Images
+    |-- js          Javascript source files
   |-- routes        Express routings
   |-- site_content  Uploaded files and images
+    |-- uploads
+      |-- images    Images uploaded to the server
   |-- views         HTML pages and templates
   
 ```
