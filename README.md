@@ -20,7 +20,7 @@ root
   
 ```
 
-## To Start the Program
+## To Run the Application
 
 1. Install Mongodb
 2. Run following commands from the command line:
