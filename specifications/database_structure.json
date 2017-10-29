@@ -4,9 +4,11 @@
     "username": "test",
     "password": "test123",
     "email": "zaa@gmail.com",
+    "mobilePhone": "201-222-222",
     "accountCreationDate": "2007-12-03",
     "profile": {
-        "name": "Xuqian Zhang",
+        "firstName": "Xuqian",
+        "lastName": "Zhang",
         "dateOfBirth": "1990-01-01",
         "age": "28",
         "profileImage": "/user/profile/image/abc.jpg"
@@ -17,41 +19,39 @@
         "addressLine2": "",
         "city": "Jersey City",
         "state": "NJ",
-        "nation": "US",
+        "country": "US",
         "zipCode": "07307",
-        "phoneNumber": "12383833"
+        "phoneNumber": "201-222-222"
     },
     "recipients": [
         {
-            "_id": "2324234",
-            "name": "Test Name",
-            "address": {
-                "addressLine1": "111 Test st Apt 2",
-                "addressLine2": "",
-                "city": "Jersey City",
-                "state": "NJ",
-                "nation": "US",
-                "zipCode": "07307",
-                "phoneNumber": "12383833"
-            }
+            "_id": "uuid",
+            "firstName": "John",
+            "lastName": "Doe",
+            "addressLine1": "111 Test st Apt 2",
+            "addressLine2": "",
+            "city": "Jersey City",
+            "state": "NJ",
+            "country": "US",
+            "zipCode": "07307",
+            "phoneNumber": "12383833"
         },
         {
-            "_id": "2324234",
-            "name": "Test Name2",
-            "address": {
-                "addressLine1": "111 Test st Apt 2",
-                "addressLine2": "",
-                "city": "Jersey City",
-                "state": "NJ",
-                "nation": "US",
-                "zipCode": "07307",
-                "phoneNumber": "12383833"
-            }
+            "_id": "uuid",
+            "firstName": "Mary",
+            "lastName": "Green",
+            "addressLine1": "111 Test st Apt 2",
+            "addressLine2": "",
+            "city": "Jersey City",
+            "state": "NJ",
+            "country": "US",
+            "zipCode": "07307",
+            "phoneNumber": "12383833"
         }
     ],
-    "orders": [
+    "orders":[
         {
-            "_id": "233432",
+            "_id": "uuid",
             "recipient": "id-reference",
             "products": [
                 {
@@ -64,52 +64,68 @@
             "status": "shipped",
             "orderDate": "2010-12-03 23:22:10",
             "priceTotal": "382"
-        },
-        {
-            "_id": "233432",
+        }, {
+            "_id": "uuid",
             "recipient": "id-reference",
             "products": [
                 {
                     "_id": "reference",
                     "quantity": "1"
                 }
+                
             ],
             "address": "id-reference",
             "status": "shipped",
-            "orderDate": "2010-02-03 23:22:10",
-            "priceTotal": "111"
+            "orderDate": "2010-12-03 23:22:10",
+            "priceTotal": "382"
         }
     ]
+    
 }
+
 // categories
 {
-    "_id": "3223",
+    "_id": "uuid",
     "name": "Men",
+    "products": ["id-reference", "id-reference", "id-reference"],
     "subCategories": [
         {
-            "_id": "233232",
+            "_id": "uuid",
             "name": "T-shirt",
-            "products": ["id1", "id2", "id3"]
+            "products": ["id-reference", "id-reference", "id-reference"]
         }
     ]
 }
 
 // products
 {
-    "_id": "2333",
+    "_id": "uuid",
     "name": "Tommy Hilfiger Men's Ultra Loft Quilted Packable Jacket",
     "price": "19.99",
-    "featuredImage": "/product/featured/img.jpg",
+    "featuredImage": "/product/uuid/featured/img.jpg",
     "sizes": [
         {
             "name": "XL",
-            "inventory": "10"
+            "quantity": "10"
         }
     ],
-    "colors": [],
+    "colors": [
+        {
+            "name": "white",
+            "image": "/product/uuid/colors/color1.img",
+            "quantity": "10"
+        }
+    ],
     "features": [],
-    "description": "Detailed product description, including images..............",
-    "details": "",
+    "description": "A brief description about this product",
+    "details": "Detailed product description, including images..............",
     "rating": 4,
-    "comments": []
+    "comments": [
+        {
+            "user": "id-reference",
+            "content": "This product is gorgeous",
+            "date": "2013-07-14",
+            "rating": 4.5
+        }
+    ]
 }
