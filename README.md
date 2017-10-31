@@ -21,6 +21,10 @@ root
     |-- database_structrue.json   The mongodb document structure
 ```
 
+## In development mode
+
+run ``` npm run dev ``` for live-reload
+
 ## To Run the Application
 
 1. Install Mongodb
