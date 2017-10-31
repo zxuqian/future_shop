@@ -62,3 +62,8 @@ body {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
   }
+
+  /* Action buttons */
+  .action-buttons {
+    padding-bottom: 1.0rem;
+  }

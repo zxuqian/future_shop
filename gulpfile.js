@@ -13,7 +13,8 @@ gulp.task('nodemon', function () {
         ignore: [
             'gulpfile.js',
             'node_modules/',
-            'views'
+            'views',
+            'public'
         ]
     })
         .on('start', function () {
@@ -33,4 +34,5 @@ gulp.task('nodemon', function () {
 
 gulp.task('default', ['nodemon'], function () {
     gulp.watch(['views/**/*.*'], browserSync.reload);
+    gulp.watch(['public/**/*.*'], browserSync.reload);
 });
