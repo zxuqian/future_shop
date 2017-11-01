@@ -44,9 +44,20 @@ $(document).ready(() => {
         //console.log(user)
         jQuery.ajax("/admin/user/", {
             data: user,
-            dataType: "json",
-            method: 'post'
+            dataType: "html",
+            method: "post",
+            success(data) {
+                $("#userTable").html(data)
+            },
+            complete() {
+                $("#addUserModal").modal('hide')
+            }
         })
         
     })
+
+    // Add listener to Modal
+    // $("#addUserModal").on('hidden.bs.modal', () => {
+    //     $(this).data('bs.modal', null)
+    // })
 })

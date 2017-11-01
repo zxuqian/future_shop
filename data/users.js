@@ -42,9 +42,9 @@ module.exports = {
     getAllUsers: async function() {
         try {
             const userCollection = await users()
-            const users = await userCollection.find({}).toArray()
-            if(!users) throw `No user found`
-            return users
+            const allUsers = await userCollection.find({}).toArray()
+            if(!allUsers) throw `No user found`
+            return allUsers
         } catch (e) {
             throw e
         }

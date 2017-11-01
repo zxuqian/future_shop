@@ -1,0 +1,24 @@
+<div id="userTable" class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users}}
+            <tr>
+                <td>{{sequence @index}}</td>
+                <td>{{username}}</td>
+                <td>{{email}}</td>
+                <td>{{mobilePhone}}</td>
+                <td>sit</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
