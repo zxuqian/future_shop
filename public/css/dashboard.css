@@ -67,3 +67,7 @@ body {
   .action-buttons {
     padding-bottom: 1.0rem;
   }
+
+  .text-black {
+    color: #212529;
+  }

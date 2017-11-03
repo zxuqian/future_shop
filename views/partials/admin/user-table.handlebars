@@ -13,10 +13,13 @@
             {{#each users}}
             <tr>
                 <td>{{sequence @index}}</td>
-                <td>{{username}}</td>
+                <td><a class="checkDetails text-primary" href="/admin/user/{{_id}}">{{username}}</a></td>
                 <td>{{email}}</td>
                 <td>{{mobilePhone}}</td>
-                <td>sit</td>
+                <td>
+                    <a href="/admin/user/{{_id}}" class="updateUserLink text-black"><i class="fa fa-pencil mr-2" aria-hidden="true"></i></a>
+                    <a href="/admin/user/{{_id}}" class="removeUserLink text-black"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
             </tr>
             {{/each}}
         </tbody>

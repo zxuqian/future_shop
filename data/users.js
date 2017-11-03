@@ -27,13 +27,12 @@ module.exports = {
             throw e
         }
     },
-    getUserById: async function(id) {
+    getUserById: async function(id, columns = {}) {
         if(!id) throw "You must supply a user id"
         try {
             const userCollection = await users()
-            const user = await userCollection.findOne({_id: id})
+            const user = await userCollection.findOne({_id: id}, columns)
             if(user === null) throw `No user found with id of ${id}`
-
             return user
         } catch (e) {
             throw e

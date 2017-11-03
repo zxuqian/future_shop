@@ -29,11 +29,46 @@ router.get("/user", async (req, res) => {
         }
     })
 })
+
+router.get("/user/:id", async(req, res) => {
+    let user = await userData.getUserById(req.params.id, {orders: 0})
+    res.json(user)
+})
+
 router.post("/user", async (req, res) => {
     try {
         await userData.addUser(req.body)
         let allUsers = await userData.getAllUsers()
         
+        hbs.render("views/partials/admin/user-table.handlebars", {
+            users: allUsers
+        }).then((html) => {
+            res.send(html)
+        })
+    } catch (e) {
+        res.json(500, "Error adding user")
+    }
+})
+
+router.put("/user/:id", async (req, res) => {
+    try {
+        await userData.updateUser(req.params.id, req.body)
+        let allUsers = await userData.getAllUsers()
+        
+        hbs.render("views/partials/admin/user-table.handlebars", {
+            users: allUsers
+        }).then((html) => {
+            res.send(html)
+        })
+    } catch (e) {
+        res.json(500, "Error adding user")
+    }
+})
+
+router.delete("/user/:id", async (req, res) => {
+    try {
+        await userData.removeUser(req.params.id)
+        let allUsers = await userData.getAllUsers()
         hbs.render("views/partials/admin/user-table.handlebars", {
             users: allUsers
         }).then((html) => {

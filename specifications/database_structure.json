@@ -23,32 +23,7 @@
         "zipCode": "07307",
         "phoneNumber": "201-222-222"
     },
-    "recipients": [
-        {
-            "_id": "uuid",
-            "firstName": "John",
-            "lastName": "Doe",
-            "addressLine1": "111 Test st Apt 2",
-            "addressLine2": "",
-            "city": "Jersey City",
-            "state": "NJ",
-            "country": "US",
-            "zipCode": "07307",
-            "phoneNumber": "12383833"
-        },
-        {
-            "_id": "uuid",
-            "firstName": "Mary",
-            "lastName": "Green",
-            "addressLine1": "111 Test st Apt 2",
-            "addressLine2": "",
-            "city": "Jersey City",
-            "state": "NJ",
-            "country": "US",
-            "zipCode": "07307",
-            "phoneNumber": "12383833"
-        }
-    ],
+    "recipients": ["id-reference"],
     "orders":[
         {
             "_id": "uuid",
@@ -81,6 +56,20 @@
         }
     ]
     
+}
+
+// recipients
+{
+    "_id": "uuid",
+    "firstName": "John",
+    "lastName": "Doe",
+    "addressLine1": "111 Test st Apt 2",
+    "addressLine2": "",
+    "city": "Jersey City",
+    "state": "NJ",
+    "country": "US",
+    "zipCode": "07307",
+    "phoneNumber": "12383833"
 }
 
 // categories
