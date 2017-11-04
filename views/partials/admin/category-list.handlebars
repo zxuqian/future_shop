@@ -1,0 +1,40 @@
+<div id="accordion" role="tablist">
+    {{#each categories}}
+    <div class="card">
+        <div class="card-header" role="tab" id="{{_id}}">
+            <h5 class="mb-0">
+                <a data-toggle="collapse" href="#collapse{{_id}}" aria-expanded="true" aria-controls="collapse{{_id}}">
+                    {{name}} <span><a href="/admin/category/{{_id}}" class="removeCategoryLink text-black"><i class="fa fa-trash" aria-hidden="true"></i></a></span>
+                </a>
+            </h5>
+        </div>
+        <div id="collapse{{_id}}" class="collapse" role="tabpanel" aria-labelledby="{{_id}}" data-parent="#accordion">
+            <div class="card-body">
+                <ul class="list-group">
+                    {{#each subCategories}}
+                    <li class="list-group-item">{{{name}}} <span><a href="/admin/category/{{../_id}}/{{_id}}" class="removeSubCategoryLink text-black"><i class="fa fa-trash" aria-hidden="true"></i></a></span></li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+
+</div>
+<h3 class="mt-2">Add a new category</h3>
+<form id="categoryForm" class="mb-2">
+    <div class="form-group">
+        <label for="parentCategory">Parent Category</label>
+        <select id="parentCategory" name="parentCategory" class="form-control">
+            <option value="0">None</option>
+            {{#each categories}}
+            <option value="{{_id}}">{{{name}}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="categoryName">Category Name</label>
+        <input type="text" class="form-control" name="categoryName" id="categoryName">
+    </div>
+    <button type="submit" id="sumitCategory" class="btn btn-primary">Submit</button>
+</form>

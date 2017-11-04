@@ -6,7 +6,7 @@ module.exports = {
     // CRUD methods
     addRootCategory: async function(category) {
         // If invalid category object passed in
-        if(!category) throw "You must supply the category data"
+        if(!category.name) throw "You must supply the category data"
         try {
             // set an id to the new category
             category._id = uuidv4()
@@ -129,7 +129,7 @@ module.exports = {
         if(!subId) throw "You must supply a sub-category id"
         try {
             const categoryCollection = await categories()
-            const deleteInfo = await categoryCollection.updateOne({_id: parentId}, {
+            const deleteInfo = await categoryCollection.update({_id: parentId}, {
                 $pull: {
                     subCategories: {
                         _id: subId

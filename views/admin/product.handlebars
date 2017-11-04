@@ -6,47 +6,9 @@
     </section> -->
     <h2>Categories</h2>
 
-    <div id="accordion" role="tablist">
-        {{#each categories}}
-        <div class="card">
-            <div class="card-header" role="tab" id="{{_id}}">
-                <h5 class="mb-0">
-                    <a data-toggle="collapse" href="#collapse{{_id}}" aria-expanded="true" aria-controls="collapse{{_id}}">
-                        {{name}}
-                    </a>
-                </h5>
-            </div>
-            <div id="collapse{{_id}}" class="collapse" role="tabpanel" aria-labelledby="{{_id}}" data-parent="#accordion">
-                <div class="card-body">
-                    <ul class="list-group">
-                        {{#each subCategories}}
-                        <li class="list-group-item">{{{name}}}</li>
-                        {{/each}}
-                    </ul>
-                </div>
-            </div>
-        </div>
-        {{/each}}
-
-    </div>
-
-    <h3 class="mt-2">Add a new category</h3>
-    <form id="categoryForm" class="mb-2">
-        <div class="form-group">
-            <label for="parentCategory">Parent Category</label>
-            <select id="parentCategory" name="parentCategory" class="form-control">
-                <option value="0">None</option>
-                {{#each categories}}
-                    <option value="{{_id}}">{{{name}}}</option>
-                {{/each}}
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="categoryName">Category Name</label>
-            <input type="text" class="form-control" name="categoryName" id="categoryName">
-        </div>
-        <button type="submit" id="sumitCategory" class="btn btn-primary">Submit</button>
-    </form>
+    <section id="category_management">
+        {{> admin/category-list categories=categories}}
+    </section>
 
     <h2>Product Table</h2>
     <div class="action-buttons">
@@ -61,11 +23,57 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <!-- TODO -->
+                        <form id="save-product-form">
+                            <div class="form-group">
+                                <label for="inputTitle">Title</label>
+                                <input type="text" name="name" class="form-control" id="inputTitle" placeholder="Product Title">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputPrice">Price</label>
+                                <input type="number" name="price" class="form-control" id="inputPrice" placeholder="Price $">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="inputS">Size: S</label>
+                                    <input type="number" name="size_s" placeholder="Quantity" class="form-control" id="inputS">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputM">Size: M</label>
+                                    <input type="number" name="size_m" placeholder="Quantity" class="form-control" id="inputM">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputL">Size: L</label>
+                                    <input type="number" name="size_l" placeholder="Quantity" class="form-control" id="inputL">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputXL">Size: XL</label>
+                                    <input type="number" name="size_xl" placeholder="Quantity" class="form-control" id="inputXL">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="productImage">Upload Product Image</label>
+                                <div class="file-upload">
+                                    <label class="custom-file">
+                                        <input type="file" name="featuredImage" id="productImage" class="custom-file-input">
+                                        <span class="custom-file-control"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputDescription">Discription</label>
+                                <input type="text" name="description" class="form-control" id="inputDescription" placeholder="Product Description">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputDetails">Details</label>
+                                <textarea name="details" class="form-control" id="inputDetails" rows="5"></textarea>
+                            </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="save-user-btn">Save changes</button>
+                        <button type="button" class="btn btn-primary" id="save-product-btn">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -73,6 +81,8 @@
     </div>
 
 
-    </div>
+    <section id="product_management">
+        {{> admin/product-table products=products}}
+    </section>
 
 </main>

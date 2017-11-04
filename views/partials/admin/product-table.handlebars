@@ -1,0 +1,27 @@
+<div id="userTable" class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>name</th>
+                <th>price</th>
+                <th>description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+         {{#each products}}
+            <tr>
+                <td>{{sequence @index}}</td>
+                <td><!--<a class="checkDetails text-primary" href="/admin/user/{{_id}}">{{username}}</a>--> {{name}}</td>
+                <td>{{price}}</td>
+                <td>{{description}}</td>
+                <td>
+                    <!-- <a href="/admin/user/{{_id}}" class="updateProductLink text-black"><i class="fa fa-pencil mr-2" aria-hidden="true"></i></a> -->
+                    <a href="/admin/product/{{_id}}" class="removeProductLink text-black"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
