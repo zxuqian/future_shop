@@ -1,15 +1,18 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const app = express();
+const express = require("express")
+const bodyParser = require("body-parser")
+const app = express()
 const static = express.static(__dirname + "/public")
+const upload = express.static(__dirname + "/site_content")
 
-const configRoutes = require("./routes");
+const configRoutes = require("./routes")
 const exphbs = require("express-handlebars")
 
 
 app.use("/public", static)
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/site_content", upload)
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.engine("handlebars", exphbs({ defaultLayout : "main" }))
 app.set("view engine", "handlebars")

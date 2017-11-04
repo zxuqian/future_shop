@@ -1,7 +1,21 @@
-const express = require("express");
-const router = express.Router();
-const data = require("../data");
-const userData = data.users;
+const express = require("express")
+const router = express.Router()
+const data = require("../data")
+const userData = data.users
+const categoryData = data.categories
+const multer  = require('multer')
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'site_content/uploads/images')
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + "." + file.originalname.split(".").pop())
+    }
+  })
+
+const upload = multer({ storage: storage})
+
 var hbs = require('express-handlebars').create({
     helpers: {
         sequence(index) {
@@ -14,6 +28,13 @@ router.get("/", async (req, res) => {
     res.render("admin/dashboard", {layout: "admin"})
 })
 
+
+/****************************************************************
+ * 
+ * User routes
+ * 
+ * 
+ ****************************************************************/
 router.get("/user", async (req, res) => {
     let allUsers = await userData.getAllUsers()
     res.render("admin/user", {
@@ -77,6 +98,55 @@ router.delete("/user/:id", async (req, res) => {
     } catch (e) {
         res.json(500, "Error adding user")
     }
+})
+
+/*****************************************************************************
+ * 
+ * Category routes
+ * 
+ *****************************************************************************/
+router.get("/product", async (req, res) => {
+    let categories = await categoryData.getAllCategories()
+    res.render("admin/product", {
+        layout: "admin",
+        categories,
+        helpers: {
+            scripts() {
+                return `<script src="/public/js/admin/category.js"></script>
+                <script src="/public/js/admin/product.js"></script>`
+            },
+            sequence(index) {
+                return index + 1
+            }
+        }
+    })
+})
+
+router.post("/category", async (req, res) => {
+    try {
+        let newCategory = await categoryData.addRootCategory(req.body)
+        res.status(200).json(newCategory)
+        
+    } catch (e) {
+        res.status(500).send("Error adding category: " + e)
+    }
+})
+
+router.post("/category/:parentId", async (req, res) => {
+    try {
+        let newCategory = await categoryData.addSubCategory(req.params.parentId, req.body)
+        res.status(200).json(newCategory)
+        
+    } catch (e) {
+        res.status(500).send("Error adding sub-category: " + e)
+    }
+})
+
+
+// Router upload
+router.post('/upload', upload.single('image'), (req, res) => {
+    //console.log(req.file)
+    res.status(200).json({path: req.file.path})
 })
 
 module.exports = router

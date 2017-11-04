@@ -18,24 +18,30 @@ $(document).ready(() => {
     let dateOfBirth = $("#inputBirthday")
     let age = $("#inputAge")
 
+    let profileImageInput = $("#profileImage")
+    let profileImage = undefined
+
     function reset() {
         // Basic info
-        let email = $("#inputEmail").val("")
-        let password = $("#inputPassword").val("")
-        let username = $("#inputUsername").val("")
-        let mobilePhone = $("#inputPhone").val("")
-        let addressLine1 = $("#inputAddress").val("")
-        let addressLine2 = $("#inputAddress2").val("")
-        let city = $("#inputCity").val("")
-        let state = $("#inputState").val("")
-        let zipCode = $("#inputZip").val("")
-        let country = $("#inputCountry").val("")
+        $("#inputEmail").val("")
+        $("#inputPassword").val("")
+        $("#inputUsername").val("")
+        $("#inputPhone").val("")
+        $("#inputAddress").val("")
+        $("#inputAddress2").val("")
+        $("#inputCity").val("")
+        $("#inputState").val("")
+        $("#inputZip").val("")
+        $("#inputCountry").val("")
 
         // Profile
-        let firstName = $("#inputFirstName").val("")
-        let lastName = $("#inputLastName").val("")
-        let dateOfBirth = $("#inputBirthday").val("")
-        let age = $("#inputAge").val("")
+        $("#inputFirstName").val("")
+        $("#inputLastName").val("")
+        $("#inputBirthday").val("")
+        $("#inputAge").val("")
+        $(".custom-file-control").text("Choose file...")
+        profileImageInput[0] = null
+        profileImage = undefined
     }
 
     function getUserObject() {
@@ -78,27 +84,33 @@ $(document).ready(() => {
                 age
             }
         }
+
+        if(profileImage) {
+            user.profile.profileImage = "/" + profileImage
+        }
         return user
     }
 
     function setValueToForm(user) {
         // Basic info
-        let email = $("#inputEmail").val(user.email)
-        let password = $("#inputPassword").val(user.password)
-        let username = $("#inputUsername").val(user.username)
-        let mobilePhone = $("#inputPhone").val(user.mobilePhone)
-        let addressLine1 = $("#inputAddress").val(user.addressLine1)
-        let addressLine2 = $("#inputAddress2").val(user.addressLine2)
-        let city = $("#inputCity").val(user.city)
-        let state = $("#inputState").val(user.state)
-        let zipCode = $("#inputZip").val(user.zipCode)
-        let country = $("#inputCountry").val(user.country)
+        $("#inputEmail").val(user.email)
+        $("#inputPassword").val(user.password)
+        $("#inputUsername").val(user.username)
+        $("#inputPhone").val(user.mobilePhone)
+        $("#inputAddress").val(user.addressLine1)
+        $("#inputAddress2").val(user.addressLine2)
+        $("#inputCity").val(user.city)
+        $("#inputState").val(user.state)
+        $("#inputZip").val(user.zipCode)
+        $("#inputCountry").val(user.country)
 
         // Profile
-        let firstName = $("#inputFirstName").val(user.firstName)
-        let lastName = $("#inputLastName").val(user.lastName)
-        let dateOfBirth = $("#inputBirthday").val(user.dateOfBirth)
-        let age = $("#inputAge").val(user.age)
+        $("#inputFirstName").val(user.firstName)
+        $("#inputLastName").val(user.lastName)
+        $("#inputBirthday").val(user.dateOfBirth)
+        $("#inputAge").val(user.age)
+
+        $(".custom-file-control").text(user.profile.profileImage)
     }
 
     // Add user event
@@ -125,6 +137,33 @@ $(document).ready(() => {
             }
         })
         
+    })
+
+    //When user upload an image
+    $("#profileImage").on('change', (event) => {
+        let files = event.currentTarget.files
+        //alert(file.name)
+        if(!files[0]) return
+        let file = files[0]
+    
+        $(".custom-file-control").text(file.name)
+
+        let formData = new FormData()
+        formData.append("image", file)
+
+        $("#save-user-btn").attr("disabled", true)
+        jQuery.ajax("/admin/upload", {
+            data: formData,
+            contentType: false, // Imperative! https://stackoverflow.com/questions/5392344/sending-multipart-formdata-with-jquery-ajax
+            method: "post",
+            processData: false, // Necessary, for jQuery will automatially convert form data to query strings
+            success(data) {
+                profileImage = data.path
+            },
+            complete() {
+                $("#save-user-btn").attr("disabled", false)
+            }
+        })
     })
 
     let isUpdate = false;
@@ -169,14 +208,11 @@ $(document).ready(() => {
         })
     })
 
-
-
     // Add listener to Modal
     $("#addUserModal").on('hidden.bs.modal', () => {
         $("#save-user-form input, #save-user-btn").attr("disabled", false)
         reset()
     })
+
 })
-
-
 
