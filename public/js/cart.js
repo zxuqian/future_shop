@@ -48,7 +48,12 @@ $(document).ready(() => {
 
     /////// Checkout page
     //save recipents?
-    $("#addNewAddress").click(e => {
-        $("#newAddressForm").toggleClass("d-none")
+    $("#useNewAddress").change(e => {
+        let val = $("#useNewAddress").prop("checked")
+        if(val) {
+            $("#newAddressForm").removeClass("d-none")
+        } else {
+            $("#newAddressForm").addClass("d-none")
+        }
     })
 })

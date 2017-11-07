@@ -11,11 +11,17 @@
     }
 </style>
 <main>
-    <form id="orderSummaryForm">
+    <form id="orderSummaryForm" action="/cart/checkout" method="post">
         <h3>Recipient Info</h3>
-        <input type="radio" name="homeAddress" value="0" id="homeAddress">{{user.homeAddress.addressLine1}}, {{user.homeAddress.addressLine2}}, {{user.homeAddress.city}}, {{user.homeAddress.state}}, {{user.homeAddress.zipCode}}
-        <a id="addNewAddress" href="#">Add a new address</a>
-        
+        <div class="currentAddresses">
+            {{#each recipients}}
+                <input type="radio" name="recipient" value="{{_id}}" id="">{{firstName}}
+                {{else}}
+                You have no recipients
+            {{/each}}
+            
+        </div>
+        <input type="checkbox" name="useNewAddress" id="useNewAddress">Use a new Address?
         <div id="newAddressForm" class="d-none">
             <label for="firstName">First Name</label>
             <input type="text" name="firstName" id="firstName">
@@ -43,7 +49,18 @@
 
             <label for="phoneNumber">Phone Number</label>
             <input type="text" name="phoneNumber" id="phoneNumber">
-            <input type="checkbox" name="saveRecipent" id="">Save to recipients?
+        </div>
+
+        <div>
+            <h3>Credit Card Info</h3>
+            <label for="cardNumber"></label>
+            <input type="text" id="cardNumber">
+
+            <label for="validDate"></label>
+            <input type="date" id="validDate">
+
+            <label for="CVV"></label>
+            <input type="text" id="CVV">
         </div>
         
 

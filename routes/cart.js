@@ -4,6 +4,8 @@ const data = require("../data");
 const passport = require("passport")
 const userData = data.users;
 const productData = data.products
+const recipientData = data.recipients
+const orderData = data.orders
 
 /**
  * 
@@ -98,9 +100,11 @@ router.get("/checkout", async(req, res) => {
         if(req.session.cart) {
             cart = req.session.cart
         }
+        let recipients = await recipientData.getRecipientsByUserId(req.user._id)
         res.render("checkout", {
             layout: "main",
             cart,
+            recipients,
             user: req.user,
             totalPrice: cart.reduce((previous, current, index) => {
                 return previous += (parseInt(current.quantity) * parseFloat(current.product.price))
@@ -117,5 +121,64 @@ router.get("/checkout", async(req, res) => {
 
 
 })
+
+router.post("/checkout", async(req, res) => {
+    try {
+        if(!req.user) {
+            res.redirect("/cart?error=notloggedin")
+            return
+        }
+        let cart = []
+        if(req.session.cart) {
+            cart = req.session.cart
+        }
+
+        let recipientId = req.body.recipient
+        if(req.body.useNewAddress === 'on') {
+            let recipient = {
+                userId: req.user._id,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                addressLine1: req.body.addressLine1,
+                addressLine2: req.body.addressLine2,
+                city: req.body.city,
+                state: req.body.state,
+                country: req.body.country,
+                zipCode: req.body.zipCode,
+                phoneNumber: req.body.phoneNumber
+            }
+            recipientId = await recipientData.addRecipient(recipient)
+        }
+
+        let totalPrice = cart.reduce((previous, current, index) => {
+            return previous += (parseInt(current.quantity) * parseFloat(current.product.price))
+        }, 0)
+        let products = new Array()
+        for(let item of cart) {
+            products.push({
+                _id: item.product._id,
+                quanity: item.quantity,
+            })
+        }
+
+        let order = {
+            recipient: recipientId,
+            products,
+            status: "paid",
+            orderDate: new Date(),
+            priceTotal: totalPrice
+        }
+
+        await orderData.addOrder(req.user._id, order)
+
+        res.render("thankyou")
+    } catch (e) {
+        res.status(500).send("Error get the cart: " + e)
+    }
+
+
+})
+
+
 
 module.exports = router

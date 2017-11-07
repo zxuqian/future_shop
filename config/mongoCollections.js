@@ -22,5 +22,6 @@ module.exports = {
     users: getCollectionFn("users"),
     products: getCollectionFn("products"),
     orders: getCollectionFn("users"),
-    categories: getCollectionFn("categories")
+    categories: getCollectionFn("categories"),
+    recipients: getCollectionFn("recipients")
 }
