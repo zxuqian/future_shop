@@ -1,12 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
     <title>Future Shop - An innovative E-commerce platform</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font-awesome -->
+    <link href="/public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/public/css/style.css" rel="stylesheet">
+
 </head>
+
 <body>
+    <header>
+        <div class="navbar navbar-dark bg-dark">
+            <div class="container d-flex justify-content-between">
+                <a href="#" class="navbar-brand">Future Shop</a>
+                <div id="account">
+                    <a id="accountName" href="#" class="text-white">Hello, {{{user.firstName}}}</a>
+                </div>
+                <form id="loginForm" class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" name="username" placeholder="Username">
+                    <input class="form-control mr-sm-2" type="password" name="password" placeholder="Password">
+                    <button class="btn btn-outline-success my-2 my-sm-0" id="loginButton" type="submit">Login</button>
+                    <button class="btn btn-outline-info ml-2 my-2 my-sm-0" type="submit">Register</button>
+                    <a href="/cart"><i class="fa fa-shopping-cart text-white" aria-hidden="true"></i><span id="shoppingNumber" class="text-white">({{cart.length}})</span></a>
+                </form>
+            </div>
+        </div>
+    </header>
+
     {{{ body }}}
+
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Back to top</a>
+            </p>
+            <p>&copy; Future Shop. All rights reserved!</p>
+            <p>Need help?
+                <a href="#">Contact Us</a>
+                <a href="../../getting-started/">Get Help</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="/public/js/jquery-3.2.1.js" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/public/js/jquery.min.js"><\/script>')</script>
+    <script src="/public/js/popper.min.js"></script>
+    <script src="/public/js/bootstrap.min.js"></script>
+    <script src="/public/js/holder.min.js"></script>
+    <script>
+        Holder.addTheme('thumb', {
+            bg: '#55595c',
+            fg: '#eceeef',
+            text: 'Thumbnail'
+        });
+    </script> 
+    <script src="/public/js/main.js"></script>
+    {{{scripts}}}
 </body>
+
 </html>

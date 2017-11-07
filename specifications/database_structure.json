@@ -23,7 +23,7 @@
         "zipCode": "07307",
         "phoneNumber": "201-222-222"
     },
-    "recipients": ["id-reference"],
+    //"recipients": ["id-reference"],
     "orders":[
         {
             "_id": "uuid",
@@ -61,6 +61,7 @@
 // recipients
 {
     "_id": "uuid",
+    "userId": "uuid",
     "firstName": "John",
     "lastName": "Doe",
     "addressLine1": "111 Test st Apt 2",
@@ -76,12 +77,10 @@
 {
     "_id": "uuid",
     "name": "Men",
-    "products": ["id-reference", "id-reference", "id-reference"],
     "subCategories": [
         {
             "_id": "uuid",
-            "name": "T-shirt",
-            "products": ["id-reference", "id-reference", "id-reference"]
+            "name": "T-shirt"
         }
     ]
 }
@@ -91,6 +90,8 @@
     "_id": "uuid",
     "name": "Tommy Hilfiger Men's Ultra Loft Quilted Packable Jacket",
     "price": "19.99",
+    "category": "uuid",
+    "subCategory": "uuid",
     "featuredImage": "/product/uuid/featured/img.jpg",
     "sizes": [
         {

@@ -75,6 +75,17 @@ module.exports = {
             throw e
         }
     },
+    getAllSubCategoryByParentId: async function(parentId) {
+        if(!parentId) throw "You must supply a parent category id"
+        try {
+            const categoryCollection = await categories()
+            const categories = await categoryCollection.find({_id: parentId}, {"subCategories": 1}).toArray()
+            if(categories === null) throw `No sub-categories found with id of ${parentId}`
+            return categories
+        } catch (e) {
+            throw e
+        }
+    },
     getAllCategories: async function() {
         try {
             const categoryCollection = await categories()

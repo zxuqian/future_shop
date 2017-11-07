@@ -1,3 +1,52 @@
-<main>
-    2111werewdddrersdsdssdwwe
+<main role="main">
+    <!-- Testing User registration -->
+    <form id="registrationForm" style="margin-left: 150px">     
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username">
+
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+
+            <label for="firstName">First Name</label>
+            <input type="text" name="firstName" id="firstName">
+
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lastName" id="lastName">
+
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+            
+            <label for="mobilePhone">Mobile Phone</label>
+            <input type="text" name="mobilePhone" id="mobilePhone">
+
+            <button id="registerButton">Register</button>
+    </form>
+
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Future Shop</h1>
+            <p class="lead text-muted">State of art technology made for you to enjoy every aspect of shopping.</p>
+            <p>
+                <a href="#" class="btn btn-primary">Main call to action</a>
+                <a href="#" class="btn btn-secondary">Secondary action</a>
+            </p>
+        </div>
+    </section>
+
+    <div class="shop text-muted">
+        <div class="container">
+            <div class="row">
+                {{#each products}}
+                <div class="card">
+                    <img src="{{featuredImage}}" alt="Card image cap">
+                    <div class="d-flex justify-content-between">
+                        <span>${{price}}</span>
+                        <a href="#" data-id="{{_id}}" class="addToCart">Add to cart</a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
 </main>

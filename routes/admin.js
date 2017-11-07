@@ -140,6 +140,17 @@ router.post("/category", async (req, res) => {
     }
 })
 
+// Get all subcategories
+router.get("/category/:id/subcategories", async(req, res) => {
+    try {
+        let subCategories = await categoryData.getAllSubCategoryByParentId(req.params.id)
+        res.status(200).json(subCategories)
+        
+    } catch (e) {
+        res.status(500).send("Error get sub-categories: " + e)
+    }
+})
+
 router.post("/category/:parentId", async (req, res) => {
     try {
         await categoryData.addSubCategory(req.params.parentId, req.body)

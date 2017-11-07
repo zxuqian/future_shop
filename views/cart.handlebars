@@ -1,0 +1,12 @@
+<main role="main">
+    <ul>
+    {{#each cart}}   
+        <li>{{{product.name}}} ---- <input type="number" class="updateQuantity" data-id="{{{product._id}}}" value="{{{quantity}}}"> ---- ${{{product.price}}}</li>   
+    {{/each}}
+    </ul>
+    <div>${{{totalPrice}}}</div>
+    {{#if message}}
+        <p id='errorMsg'>{{message}}</p>
+    {{/if}}
+    <a id="checkoutButton" href="/cart/checkout">Checkout</a>
+</main>

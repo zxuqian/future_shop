@@ -126,7 +126,7 @@ $(document).ready(() => {
                 contentType: false,
                 data: imageData,
                 success(data) {
-                    obj.featuredImage = data
+                    obj.featuredImage = data.path
                     save()
                 },
                 complete(j, e) {
@@ -137,6 +137,29 @@ $(document).ready(() => {
             save()
         }
 
+    })
+
+    /**
+     * Add listener to category selection
+     */
+    $("#selectParentCategory").change((e) => {
+        let parentId = $("#selectParentCategory").val()
+        $("#selectSubCategory").html("<option value='0'>None</option>")
+        if(!parentId) return
+        jQuery.ajax("/admin/category/" + parentId + "/subcategories", {
+            method: "get",
+            success(data) {
+                //console.log(data)
+                let subCategories = data.subCategories;
+                if(!subCategories) return
+                for(let subCategory of subCategories) {
+                    $("#selectSubCategory").append(`<option value=${subCategory._id}>${subCategory.name}</option>`)
+                }
+            },
+            complete(j, e) {
+                console.log(e + " from get subcategories function")
+            }
+        })
     })
 
     /**

@@ -32,18 +32,7 @@ module.exports = {
         try {
             const userCollection = await users()
             const user = await userCollection.findOne({_id: id}, columns)
-            if(user === null) throw 'UserNotFoundException'
-            return user
-        } catch (e) {
-            throw e
-        }
-    },
-    getUserByUserName: async function(username, columns = {}) {
-        if(!username) throw "You must supply the username"
-        try {
-            const userCollection = await users()
-            const user = await userCollection.findOne({username}, columns)
-            if(user === null) throw 'UserNotFoundException'
+            if(user === null) throw `No user found with id of ${id}`
             return user
         } catch (e) {
             throw e

@@ -1,0 +1,61 @@
+<style>
+    #orderSummaryForm * {
+        display: block;
+        width: 500px;
+    }
+
+    #orderSummaryForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+<main>
+    <form id="orderSummaryForm">
+        <h3>Recipient Info</h3>
+        <input type="radio" name="homeAddress" value="0" id="homeAddress">{{user.homeAddress.addressLine1}}, {{user.homeAddress.addressLine2}}, {{user.homeAddress.city}}, {{user.homeAddress.state}}, {{user.homeAddress.zipCode}}
+        <a id="addNewAddress" href="#">Add a new address</a>
+        
+        <div id="newAddressForm" class="d-none">
+            <label for="firstName">First Name</label>
+            <input type="text" name="firstName" id="firstName">
+
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lastName" id="lastName">
+
+            <label for="addressLine1">Address Line 1</label>
+            <input type="text" name="addressLine1" id="addressLine1">
+
+            <label for="addressLine1">Address Line 2</label>
+            <input type="text" name="addressLine2" id="addressLine2">
+
+            <label for="city">City</label>
+            <input type="text" name="city" id="city">
+
+            <label for="state">State</label>
+            <input type="text" name="state" id="state">
+
+            <label for="country">Country</label>
+            <input type="text" name="country" id="country">
+
+            <label for="zipCode">Zip Code</label>
+            <input type="text" name="zipCode" id="zipCode">
+
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" name="phoneNumber" id="phoneNumber">
+            <input type="checkbox" name="saveRecipent" id="">Save to recipients?
+        </div>
+        
+
+        <h3>Cart details</h3>
+        <ul>
+            {{#each cart}}
+                <li>{{product.name}} ----- ${{product.price}} -- {{product.quantity}}</li>
+            {{/each}}
+            <p>${{totalPrice}}</p>
+        </ul>
+
+        <button id="submitOderButton">Checkout</button>
+
+    </form>
+</main>

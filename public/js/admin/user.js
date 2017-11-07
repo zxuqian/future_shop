@@ -92,25 +92,30 @@ $(document).ready(() => {
     }
 
     function setValueToForm(user) {
-        // Basic info
-        $("#inputEmail").val(user.email)
-        $("#inputPassword").val(user.password)
-        $("#inputUsername").val(user.username)
-        $("#inputPhone").val(user.mobilePhone)
-        $("#inputAddress").val(user.addressLine1)
-        $("#inputAddress2").val(user.addressLine2)
-        $("#inputCity").val(user.city)
-        $("#inputState").val(user.state)
-        $("#inputZip").val(user.zipCode)
-        $("#inputCountry").val(user.country)
+        try {
+            // Basic info
+            $("#inputEmail").val(user.email)
+            $("#inputPassword").val(user.password)
+            $("#inputUsername").val(user.username)
+            $("#inputPhone").val(user.mobilePhone)
+            $("#inputAddress").val(user.homeAddress.addressLine1)
+            $("#inputAddress2").val(user.homeAddress.addressLine2)
+            $("#inputCity").val(user.homeAddress.city)
+            $("#inputState").val(user.homeAddress.state)
+            $("#inputZip").val(user.homeAddress.zipCode)
+            $("#inputCountry").val(user.homeAddress.country)
 
-        // Profile
-        $("#inputFirstName").val(user.firstName)
-        $("#inputLastName").val(user.lastName)
-        $("#inputBirthday").val(user.dateOfBirth)
-        $("#inputAge").val(user.age)
+            // Profile
+            $("#inputFirstName").val(user.firstName)
+            $("#inputLastName").val(user.lastName)
+            $("#inputBirthday").val(user.dateOfBirth)
+            $("#inputAge").val(user.age)
 
-        $(".custom-file-control").text(user.profile.profileImage)
+            $(".custom-file-control").text(user.profile.profileImage)
+        } catch (e) {
+            // No need to do anything
+        }
+        
     }
 
     // Add user event
