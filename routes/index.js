@@ -5,8 +5,8 @@ const homeRoutes = require("./home")
 const cartRoutes = require("./cart")
 
 const constructorMethod = (app) => {
-    app.use("/users", userRoutes)
-    app.use("/products", productRoutes)
+    app.use("/user", userRoutes)
+    app.use("/product", productRoutes)
     app.use("/admin", adminRoutes)
     app.use("/cart", cartRoutes)
 

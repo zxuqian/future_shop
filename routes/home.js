@@ -1,13 +1,15 @@
-const express = require("express");
-const router = express.Router();
-const data = require("../data");
-const userData = data.users;
+const express = require("express")
+const router = express.Router()
+const data = require("../data")
+const userData = data.users
 const productData = data.products
+const categoryData = data.categories
 const passport = require("passport")
 
 router.get("/", async(req, res) => {
     try {
         let products = await productData.getAllProducts()
+        let categories = await categoryData.getAllCategories()
         let cart = []
         if(req.session.cart) {
             cart = req.session.cart
@@ -15,12 +17,8 @@ router.get("/", async(req, res) => {
         res.render('index', {
             products,
             cart,
-            user: req.user,
-            helpers: {
-                scripts() {
-                    return `<script src="/public/js/index.js"></script>`
-                }
-            }
+            categories,
+            user: req.user
         })
     } catch (e) {
         res.status(500).send("Error getting all product: " + e)

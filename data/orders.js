@@ -48,7 +48,7 @@ module.exports = {
     getAllOrders: async function(userId) {
         try {
             const userCollection = await users()
-            const allOrders = await userCollection.find({_id: userId}, {"orders": 1}).toArray()
+            const allOrders = await userCollection.findOne({_id: userId}, {"orders": 1})
             if(!allOrders) throw `No order found`
             return allOrders
         } catch (e) {

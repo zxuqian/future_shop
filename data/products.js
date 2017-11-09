@@ -38,6 +38,46 @@ module.exports = {
             throw e
         }
     },
+    getProductByCategory: async function(categoryId, columns = {}) {
+        if(!categoryId) throw "You must supply a category id"
+        try {
+            const productCollection = await products()
+            const productArr = await productCollection.find({category: categoryId}, columns).toArray()
+            if(productArr === null) throw `No products found in the category: ${categoryId}`
+            return productArr
+        } catch (e) {
+            throw e
+        }
+    },
+    getProductBySearch: async function(searchTerm, columns = {}) {
+        if(!searchTerm) throw "You must supply a search term"
+        try {
+            searchTerm = searchTerm.trim()
+            const productCollection = await products()
+            const productArr = await productCollection.find({
+                $or: [
+                    {
+                        name: {
+                            $regex: `.*${searchTerm}.*`
+                        }    
+                    }, {
+                        description: {
+                            $regex: `.*${searchTerm}.*`
+                        }
+                    }, {
+                        details: {
+                            $regex: `.*${searchTerm}.*`
+                        }
+                    }
+                ]
+                //name: {$in: ["z"]}
+            }, columns).toArray()
+            if(productArr === null) throw `No products found for the search term ${searchTerm}`
+            return productArr
+        } catch (e) {
+            throw e
+        }
+    },
     getAllProducts: async function() {
         try {
             const productCollection = await products()

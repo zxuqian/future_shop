@@ -1,11 +1,12 @@
-const express = require("express");
-const router = express.Router();
-const data = require("../data");
+const express = require("express")
+const router = express.Router()
+const data = require("../data")
 const passport = require("passport")
-const userData = data.users;
+const userData = data.users
 const productData = data.products
 const recipientData = data.recipients
 const orderData = data.orders
+const categoryData = data.categories
 
 /**
  * 
@@ -50,10 +51,12 @@ router.get("/", async(req, res) => {
         if(req.session.cart) {
             cart = req.session.cart
         }
+        let categories = categoryData.getAllCategories()
         res.render("cart", {
             layout: "main",
             cart,
             message,
+            categories,
             user: req.user,
             totalPrice: cart.reduce((previous, current, index) => {
                 return previous += (parseInt(current.quantity) * parseFloat(current.product.price))

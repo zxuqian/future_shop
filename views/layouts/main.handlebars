@@ -23,9 +23,9 @@
     <header>
         <div class="navbar navbar-dark bg-dark">
             <div class="container d-flex justify-content-between">
-                <a href="#" class="navbar-brand">Future Shop</a>
+                <a href="/" class="navbar-brand">Future Shop</a>
                 <div id="account">
-                    <a id="accountName" href="#" class="text-white">Hello, {{{user.firstName}}}</a>
+                    <a id="accountName" href="{{#if user._id}}/user/profile{{else}}#{{/if}}" class="text-white">Hello, {{{user.firstName}}}</a>
                 </div>
                 <form id="loginForm" class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="text" name="username" placeholder="Username">
@@ -35,7 +35,40 @@
                     <a href="/cart"><i class="fa fa-shopping-cart text-white" aria-hidden="true"></i><span id="shoppingNumber" class="text-white">({{cart.length}})</span></a>
                 </form>
             </div>
+            <div class="container row d-flex justify-content-start">
+                <div class="categories col-4">
+                    {{#each categories}}
+                        <a class="p-2" href="/product/category/{{_id}}">{{name}}</a>
+                    {{/each}}
+                </div>
+                <form action="/product/search" method="post" class="form-inline row my-2 my-lg-0 col-8">
+                    <input class="form-control col-8 mr-sm-2" name="searchTerm" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-primary col-2 my-2 my-sm-0" id="searchButton" type="submit">Search</button>
+                </form>
+            </div>
         </div>
+        <!-- Testing User registration -->
+        <form id="registrationForm" style="margin-left: 150px">     
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username">
+
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password">
+
+                <label for="firstName">First Name</label>
+                <input type="text" name="firstName" id="firstName">
+
+                <label for="lastName">Last Name</label>
+                <input type="text" name="lastName" id="lastName">
+
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+                
+                <label for="mobilePhone">Mobile Phone</label>
+                <input type="text" name="mobilePhone" id="mobilePhone">
+
+                <button id="registerButton">Register</button>
+        </form>
     </header>
 
     {{{ body }}}

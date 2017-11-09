@@ -1,0 +1,24 @@
+
+  <div class="container">
+    <div class="row">
+      <!-- Sidebar -->
+      <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Orders
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/user/profile/{{user_id}}">Profile</a>
+          </li>
+        </ul>
+
+      </nav>
+
+      {{#if order_page}}
+      {{> orders orders=orders }}
+      {{/if}}
+
+    </div>
+  </div>

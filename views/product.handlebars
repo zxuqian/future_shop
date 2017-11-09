@@ -1,0 +1,15 @@
+<div class="shop text-muted">
+    <div class="container">
+        <div class="row">
+            {{#each products}}
+            <div class="card">
+                <img src="{{featuredImage}}" alt="Card image cap">
+                <div class="d-flex justify-content-between">
+                    <span>${{price}}</span>
+                    <a href="#" data-id="{{_id}}" class="addToCart">Add to cart</a>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

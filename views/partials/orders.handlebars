@@ -1,0 +1,22 @@
+<div id="userTable" class="table-responsive col-md-9">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Order Date</th>
+                <th>Total Price</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each orders}}
+            <tr>
+                <td>{{_id}}</td>
+                <td>{{formateDate orderDate}}</td>
+                <td>{{priceTotal}}</td>
+                <td>{{status}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
