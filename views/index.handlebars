@@ -1,12 +1,14 @@
 <main role="main">
-    <section class="jumbotron text-center">
-        <div class="container">
-            <h1 class="jumbotron-heading">Future Shop</h1>
-            <p class="lead text-muted">State of art technology made for you to enjoy every aspect of shopping.</p>
-            <p>
-                <a href="#" class="btn btn-primary">Main call to action</a>
-                <a href="#" class="btn btn-secondary">Secondary action</a>
-            </p>
+    <section class="carousel slide text-center" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="holder.js/100px350?theme=social&text=Future Shop">
+                <!--<div class="carousel-caption d-none d-md-block">
+                    <h1 class="jumbotron-heading">Future Shop</h1>
+                    <p class="lead text-white">State of art technology made for you to enjoy every aspect of shopping.</p>
+                </div> -->
+
+            </div>
         </div>
     </section>
 
@@ -14,10 +16,14 @@
         <div class="container">
             <div class="row">
                 {{#each products}}
-                <div class="card">
-                    <img src="{{featuredImage}}" alt="Card image cap">
+                <div class="card product_card">
+                    {{#if featuredImage}}
+                    <img src="{{featuredImage}}" alt="Card image cap"> {{else}}
+                    <img data-src="holder.js/350x200?text=No Image" alt="Card image cap"> {{/if}}
+
+                    <a href="/product/{{_id}}">{{name}}</a>
                     <div class="d-flex justify-content-between">
-                        <span>${{price}}</span>
+                        <span class="price">${{price}}</span>
                         <a href="#" data-id="{{_id}}" class="addToCart">Add to cart</a>
                     </div>
                 </div>

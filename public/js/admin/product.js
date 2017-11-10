@@ -76,6 +76,12 @@ $(document).ready(() => {
      * Product management
      */
 
+    // When dialog show, load sub category of the first select
+    $("#addProductModal").on('show.bs.modal', () => {
+        let cateId = $("#selectParentCategory option")[0].value
+        changeSubCategorySelection(cateId)
+    })
+
     // add product
     $("#save-product-btn").click((e) => {
         let formData = $("#save-product-form").serializeArray()
@@ -146,13 +152,16 @@ $(document).ready(() => {
         let parentId = $("#selectParentCategory").val()
         $("#selectSubCategory").html("<option value='0'>None</option>")
         if(!parentId) return
-        jQuery.ajax("/admin/category/" + parentId + "/subcategories", {
+        changeSubCategorySelection(parentId)
+    })
+
+    function changeSubCategorySelection(cateId) {
+        jQuery.ajax("/admin/category/" + cateId + "/subcategories", {
             method: "get",
             success(data) {
                 //console.log(data)
-                let subCategories = data.subCategories;
-                if(!subCategories) return
-                for(let subCategory of subCategories) {
+                if(!data) return
+                for(let subCategory of data) {
                     $("#selectSubCategory").append(`<option value=${subCategory._id}>${subCategory.name}</option>`)
                 }
             },
@@ -160,7 +169,7 @@ $(document).ready(() => {
                 console.log(e + " from get subcategories function")
             }
         })
-    })
+    }
 
     /**
      * Delete product

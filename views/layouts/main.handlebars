@@ -14,8 +14,12 @@
     <!-- Font-awesome -->
     <link href="/public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
+    <!-- Toastr -->
+    <link rel="stylesheet" href="/public/css/toastr.min.css">
+
     <!-- Custom styles for this template -->
     <link href="/public/css/style.css" rel="stylesheet">
+
 
 </head>
 
@@ -25,7 +29,7 @@
             <div class="container d-flex justify-content-between">
                 <a href="/" class="navbar-brand">Future Shop</a>
                 <div id="account">
-                    <a id="accountName" href="{{#if user._id}}/user/profile{{else}}#{{/if}}" class="text-white">Hello, {{{user.firstName}}}</a>
+                    <a id="accountName" href="{{#if user._id}}/user/{{else}}#{{/if}}" class="text-white">Hello, {{{user.firstName}}}</a>
                 </div>
                 <form id="loginForm" class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="text" name="username" placeholder="Username">
@@ -78,10 +82,10 @@
             <p class="float-right">
                 <a href="#">Back to top</a>
             </p>
-            <p>&copy; Future Shop. All rights reserved!</p>
+            <p>&copy; Future Shop. All rights reserved.</p>
             <p>Need help?
                 <a href="#">Contact Us</a>
-                <a href="../../getting-started/">Get Help</a>
+                <a href="#">Get Help</a>
             </p>
         </div>
     </footer>
@@ -98,6 +102,7 @@
             text: 'Thumbnail'
         });
     </script> 
+    <script src="/public/js/toastr.min.js"></script>
     <script src="/public/js/main.js"></script>
     {{{scripts}}}
 </body>

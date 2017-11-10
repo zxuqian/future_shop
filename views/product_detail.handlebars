@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <div class="mt-4 row">
+                <div class="col-5">
+                    <img class="img-fluid" data-src="holder.js/300x400?text=No Image" alt="">
+                </div>
+                <div class="col-7">
+                    <h3 class="product-title">{{product.name}}</h3>
+                    <h4>${{product.price}}</h4>
+                    <p class="product-descripton">{{product.description}}</p>
+                    <a href="#" data-id="{{product._id}}" class="addToCart btn btn-primary">Add to cart</a>
+                </div>
+            </div>
+
+            <div class="card card-outline-secondary my-4">
+                <div class="card-header">
+                    Product Details
+                </div>
+                <div class="card-body">
+                    <p>{{product.details}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

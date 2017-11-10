@@ -43,6 +43,24 @@ router.post("/search", async(req, res) => {
     }
 })
 
+router.get("/:productId", async(req, res) => {
+    try {
+        let product = await productData.getProductById(req.params.productId)
+        let categories = await categoryData.getAllCategories()
+        let cart = []
+        if(req.session.cart) {
+            cart = req.session.cart
+        }
+        res.render('product_detail', {
+            product,
+            cart,
+            categories,
+            user: req.user
+        })
+    } catch (e) {
+        res.status(500).send("Error getting product: " + e)
+    }
+})
 
 
 

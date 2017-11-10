@@ -42,8 +42,16 @@ module.exports = {
         if(!categoryId) throw "You must supply a category id"
         try {
             const productCollection = await products()
-            const productArr = await productCollection.find({category: categoryId}, columns).toArray()
-            if(productArr === null) throw `No products found in the category: ${categoryId}`
+            const productArr = await productCollection.find({
+                $or:[
+                    {
+                        category: categoryId
+                    }, {
+                        subCategory: categoryId
+                    }
+                ]
+            }, columns).toArray()
+
             return productArr
         } catch (e) {
             throw e

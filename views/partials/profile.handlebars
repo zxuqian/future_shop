@@ -1,0 +1,81 @@
+<form id="save-user-form">
+    <div class="form-header">
+        <h5>Basic Information</h5>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail">Email</label>
+            <input type="email" class="form-control" value="{{user.email}}" id="inputEmail" placeholder="Email">
+        </div>
+
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputUsername">Username</label>
+            <input type="text" class="form-control" id="inputUsername" value="{{user.username}}" placeholder="Username">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPhone">Phone Number</label>
+            <input type="text" class="form-control" id="inputPhone" value="{{user.mobilePhone}}" placeholder="Phone Number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputAddress">Address</label>
+        <input type="text" class="form-control" id="inputAddress" value="{{user.addressLine1}}" placeholder="1234 Main St">
+    </div>
+    <div class="form-group">
+        <label for="inputAddress2">Address 2</label>
+        <input type="text" class="form-control" id="inputAddress2" value="{{user.addressLine2}}" placeholder="Apartment, studio, or floor">
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="inputCity">City</label>
+            <input type="text" class="form-control" value="{{user.city}}" id="inputCity">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputState">State</label>
+            <input type="text" class="form-control" value="{{user.state}}" id="inputState">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputZip">Zip</label>
+            <input type="text" class="form-control" value="{{user.zipCode}}" id="inputZip">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputZip">Country</label>
+            <input type="text" class="form-control" value="{{user.country}}" id="inputCountry">
+        </div>
+    </div>
+
+    <div class="form-header">
+        <h5>Profile</h5>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputFirstName">First Name</label>
+            <input type="text" class="form-control" id="inputFirstName" value="{{user.firstName}}" placeholder="First Name">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputLastName">Last Name</label>
+            <input type="text" class="form-control" id="inputLastName" value="{{user.lastName}}" placeholder="Last Name">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputBirthday">Birthday</label>
+            <input type="date" class="form-control" id="inputBirthday" value="{{user.profile.dateOfBirth}}" placeholder="Birthday">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputAge">Age</label>
+            <input type="number" class="form-control" value="{{user.profile.age}}" id="inputAge" placeholder="Age">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="profileImage">Upload Profile Image</label>
+        <div class="file-upload">
+            <label class="custom-file">
+                <input type="file" id="profileImage" class="custom-file-input">
+                <span class="custom-file-control">{{user.profile.profileImage}}</span>
+            </label>
+        </div>
+    </div>
+</form>

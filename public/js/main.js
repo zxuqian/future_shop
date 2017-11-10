@@ -15,7 +15,7 @@ $(document).ready(() => {
             success(data) {
                 console.log(data)
                 $("#accountName").text(`Hello, ${data.firstName}`)
-                $("#accountName").attr("href", "/user/profile")
+                $("#accountName").attr("href", "/user")
             },
             error(jxr) {
                 // User name or password not correct
@@ -66,6 +66,7 @@ $(document).ready(() => {
             success(data) {
                 //console.log(data)
                 $("#shoppingNumber").text(`(${data})`)
+                toastr.success('Add to cart successfully', null, {timeOut: 2000, positionClass: "toast-bottom-right",})
             },
             compelete(j, e) {
                 console.log(e)

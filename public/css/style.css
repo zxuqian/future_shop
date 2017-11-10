@@ -32,7 +32,7 @@ body {
     background-color: #f7f7f7;
 }
 
-.card {
+.product_card {
     float: left;
     width: 33.333%;
     padding: .75rem;
@@ -40,14 +40,18 @@ body {
     border: 0;
 }
 
-.card > img {
+.product_card > img {
     margin-bottom: .75rem;
     width: 350px;
     height: 200px;
 }
 
-.card-text {
+.product_card-text {
     font-size: 85%;
+}
+
+.price {
+    color: #b80e0ed7;
 }
 
 footer {

@@ -79,9 +79,11 @@ module.exports = {
         if(!parentId) throw "You must supply a parent category id"
         try {
             const categoryCollection = await categories()
-            const categories = await categoryCollection.find({_id: parentId}, {"subCategories": 1}).toArray()
-            if(categories === null) throw `No sub-categories found with id of ${parentId}`
-            return categories
+            const parentCategory = await categoryCollection.findOne({_id: parentId}, {"subCategories": 1})
+            if(!parentCategory) throw "No parent category found"
+            let categoriesArr = parentCategory.subCategories
+            if(categoriesArr === null) throw `No sub-categories found with id of ${parentId}`
+            return categoriesArr
         } catch (e) {
             throw e
         }
