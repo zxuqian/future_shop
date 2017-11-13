@@ -1,6 +1,9 @@
 const uuidv4 = require('uuid/v4')
 const mongoCollections = require('../config/mongoCollections')
+const bcrypt = require("bcrypt")
 const users = mongoCollections.users
+
+const saltRounds = 10
 
 module.exports = {
     // CRUD methods
@@ -10,6 +13,8 @@ module.exports = {
         try {
             // set an id to the new user
             user._id = uuidv4()
+
+            user.password = await bcrypt.hash(user.password, saltRounds)
 
             // wait to get the user collection
             const userCollection = await users()

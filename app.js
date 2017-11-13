@@ -3,6 +3,8 @@ const bodyParser = require("body-parser")
 const session = require("express-session")
 const passport = require("passport")
 const LocalStrategy = require("passport-local").Strategy
+const bcrypt = require("bcrypt")
+
 const app = express()
 const static = express.static(__dirname + "/public")
 const upload = express.static(__dirname + "/site_content")
@@ -29,7 +31,7 @@ app.use(session({
 passport.use(new LocalStrategy(async (username, password, done) => {
     try {
         let user = await userData.getUserByUserName(username)
-        if(!user || user.password != password) {
+        if(!user || !await bcrypt.compare(password, user.password)) {
             return done(null, false, {message: "Username or password is not correct"})
         }
         return done(null ,user)

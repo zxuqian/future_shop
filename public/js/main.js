@@ -42,6 +42,7 @@ $(document).ready(() => {
             data: userObj,
             success(data) {
                 //console.log(data)
+                toastr.success('Register successfully', null, {timeOut: 2000, positionClass: "toast-top-right",})
             },
             complete(j, e) {
                 console.log(e)
