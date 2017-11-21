@@ -39,7 +39,7 @@ $(document).ready(() => {
                     window.location.href = $("#checkoutButton").attr("href")
                 } else {
                     if(!$("#errorMsg").length) {
-                        $("#checkoutButton").before("<p id='errorMsg'>You must login to proceed</p>")
+                        $("#cartTable").after("<div class='alert alert-danger' role='alert' id='errorMsg'>You must login to proceed</div>")
                     }
                 }
             }

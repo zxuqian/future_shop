@@ -27,10 +27,25 @@ $(document).ready(() => {
 
     })
 
+    // Show register modal
+    $("#registerModalButton").click(e => {
+        e.preventDefault();
+        $("#registrationModel").modal('show')
+    })
+
     // Register
     $("#registerButton").click(e => {
-        e.preventDefault()
+        //e.preventDefault()
         let registrationForm = $("#registrationForm")[0]
+        if (registrationForm.checkValidity() === false) {
+            event.preventDefault()
+            event.stopPropagation()   
+            registrationForm.classList.add('was-validated')     
+            return
+        }
+
+        registrationForm.classList.add('was-validated')
+
         let formData = new FormData(registrationForm)
 
         let userObj = {}
@@ -42,6 +57,9 @@ $(document).ready(() => {
             data: userObj,
             success(data) {
                 //console.log(data)
+                $("#registrationModel").modal('hide')
+                registrationForm.reset()
+                registrationForm.classList.remove('was-validated')
                 toastr.success('Register successfully', null, {timeOut: 2000, positionClass: "toast-top-right",})
             },
             complete(j, e) {

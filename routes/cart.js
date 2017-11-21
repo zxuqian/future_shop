@@ -64,6 +64,9 @@ router.get("/", async(req, res) => {
             helpers: {
                 scripts() {
                     return `<script src="/public/js/cart.js"></script>`
+                },
+                multiply(a, b) {
+                    return a * b
                 }
             }
         })

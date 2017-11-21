@@ -27,52 +27,98 @@
     <header>
         <div class="navbar navbar-dark bg-dark">
             <div class="container d-flex justify-content-between">
-                <a href="/" class="navbar-brand">Future Shop</a>
-                <div id="account">
-                    <a id="accountName" href="{{#if user._id}}/user/{{else}}#{{/if}}" class="text-white">Hello, {{{user.firstName}}}</a>
+                <div class="logo_category">
+                    <a href="/" class="navbar-brand">Future Shop</a>
+                    <div class="categories">
+                        {{#each categories}}
+                        <a class="pr-2 text-white" href="/product/category/{{_id}}">{{name}}</a>
+                        {{/each}}
+                    </div>
                 </div>
-                <form id="loginForm" class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" name="username" placeholder="Username">
-                    <input class="form-control mr-sm-2" type="password" name="password" placeholder="Password">
-                    <button class="btn btn-outline-success my-2 my-sm-0" id="loginButton" type="submit">Login</button>
-                    <button class="btn btn-outline-info ml-2 my-2 my-sm-0" type="submit">Register</button>
-                    <a href="/cart"><i class="fa fa-shopping-cart text-white" aria-hidden="true"></i><span id="shoppingNumber" class="text-white">({{cart.length}})</span></a>
-                </form>
+
+                <div class="right_form d-flex flex-row justify-content-center align-items-center">
+                    <form id="loginForm" class="form-inline my-2 my-lg-0 {{#if user._id}}d-none{{/if}}">
+                        <input class="form-control mr-sm-2" type="text" name="username" placeholder="Username">
+                        <input class="form-control mr-sm-2" type="password" name="password" placeholder="Password">
+                        <button class="btn btn-outline-success my-2 my-sm-0" id="loginButton" type="submit">Login</button>
+                        <button class="btn btn-outline-info ml-2 my-2 my-sm-0" id="registerModalButton" data-toggle="modal" data-target="#registrationModel">Register</button>
+                    </form>
+                    <a id="accountName" href="{{#if user._id}}/user/{{else}}#{{/if}}" class="text-white">{{#if user._id}}Hello, {{{user.firstName}}}{{else}}{{/if}}</a>
+                    <a class="ml-1" href="/cart">
+                        <i class="fa fa-shopping-cart text-white" aria-hidden="true"></i>
+                        <span id="shoppingNumber" class="text-white">({{cart.length}})</span>
+                    </a>
+                </div>
             </div>
-            <div class="container row d-flex justify-content-start">
-                <div class="categories col-4">
-                    {{#each categories}}
-                        <a class="p-2" href="/product/category/{{_id}}">{{name}}</a>
-                    {{/each}}
+
+        </div>
+
+
+        </div>
+        <!-- User registration -->
+        <div class="modal fade" id="registrationModel" tabindex="-1" role="dialog" aria-labelledby="registrationModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="registrationModalLabel">Register</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="registrationForm">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input class="form-control" type="text" name="username" id="username" required pattern="^[a-zA-Z0-9]{6,14}$">
+                                <div class="invalid-feedback">
+                                    Username must be 6-14 letters or numbers.
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input class="form-control" type="password" name="password" id="password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,14}$">
+                                <div class="invalid-feedback">
+                                    Password must be meet following rules: 6-14 characters long; At least 1 lower case letter; At least 1 upper case letter; At least 1 number
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input class="form-control" type="text" name="firstName" id="firstName" required pattern="^[a-zA-Z]{1,}$">
+                                <div class="invalid-feedback">
+                                    You must provide your first name
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input class="form-control" type="text" name="lastName" id="lastName" required pattern="^[a-zA-Z]{1,}$">
+                                <div class="invalid-feedback">
+                                    You must provide your last name
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input class="form-control" type="email" name="email" id="email" required>
+                                <div class="invalid-feedback">
+                                    You must provide your email, and make sure the correct format
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="mobilePhone">Mobile Phone</label>
+                                <input class="form-control" type="text" name="mobilePhone" id="mobilePhone" required pattern="^[0-9]{10}$">
+                                <div class="invalid-feedback">
+                                    You must provide your 10 digits phone number
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="registerButton" class="btn btn-primary">Register</button>
+                    </div>
                 </div>
-                <form action="/product/search" method="post" class="form-inline row my-2 my-lg-0 col-8">
-                    <input class="form-control col-8 mr-sm-2" name="searchTerm" type="text" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-primary col-2 my-2 my-sm-0" id="searchButton" type="submit">Search</button>
-                </form>
             </div>
         </div>
-        <!-- Testing User registration -->
-        <form id="registrationForm" style="margin-left: 150px">     
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username">
 
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password">
-
-                <label for="firstName">First Name</label>
-                <input type="text" name="firstName" id="firstName">
-
-                <label for="lastName">Last Name</label>
-                <input type="text" name="lastName" id="lastName">
-
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email">
-                
-                <label for="mobilePhone">Mobile Phone</label>
-                <input type="text" name="mobilePhone" id="mobilePhone">
-
-                <button id="registerButton">Register</button>
-        </form>
     </header>
 
     {{{ body }}}
@@ -101,10 +147,9 @@
             fg: '#eceeef',
             text: 'Thumbnail'
         });
-    </script> 
+    </script>
     <script src="/public/js/toastr.min.js"></script>
-    <script src="/public/js/main.js"></script>
-    {{{scripts}}}
+    <script src="/public/js/main.js"></script> {{{scripts}}}
 </body>
 
 </html>
