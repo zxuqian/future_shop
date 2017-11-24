@@ -72,7 +72,7 @@ module.exports = {
             const updateInfo = await userCollection.updateOne({_id: id}, {
                 $set: user
             })
-            if(updateInfo.modifiedCount === 0) throw `Update the user of id ${id} failed`
+            //if(updateInfo.modifiedCount === 0) throw `Update the user of id ${id} failed`
             return await this.getUserById(id)
         } catch (e) {
             throw e

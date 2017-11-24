@@ -106,10 +106,10 @@ $(document).ready(() => {
             $("#inputCountry").val(user.homeAddress.country)
 
             // Profile
-            $("#inputFirstName").val(user.firstName)
-            $("#inputLastName").val(user.lastName)
-            $("#inputBirthday").val(user.dateOfBirth)
-            $("#inputAge").val(user.age)
+            $("#inputFirstName").val(user.profile.firstName)
+            $("#inputLastName").val(user.profile.lastName)
+            $("#inputBirthday").val(user.profile.dateOfBirth)
+            $("#inputAge").val(user.profile.age)
 
             $(".custom-file-control").text(user.profile.profileImage)
         } catch (e) {

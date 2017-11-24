@@ -2,9 +2,9 @@
     <table id="cartTable" class="table table-hover table-condensed">
         <thead>
             <tr>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Quantity</th>
+                <th class="w-50">Product</th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Quantity</th>
                 <th class="text-center">Subtotal</th>
             </tr>
         </thead>
@@ -19,8 +19,8 @@
                         </div>
                     </div>
                 </td>
-                <td data-th="Price">${{product.price}}</td>
-                <td data-th="Quantity">
+                <td class="text-center" data-th="Price">${{product.price}}</td>
+                <td class="text-center" data-th="Quantity">
                     <input type="number" class="updateQuantity form-control text-center" data-id="{{{product._id}}}" value="{{{quantity}}}">
                 </td>
                 <td data-th="Subtotal" class="text-center">${{multiply product.price quantity}}</td>

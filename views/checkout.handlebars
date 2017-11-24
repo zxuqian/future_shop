@@ -1,78 +1,127 @@
-<style>
-    #orderSummaryForm * {
-        display: block;
-        width: 500px;
-    }
-
-    #orderSummaryForm {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-</style>
-<main>
+<main class="container">
     <form id="orderSummaryForm" action="/cart/checkout" method="post">
         <h3>Recipient Info</h3>
         <div class="currentAddresses">
             {{#each recipients}}
-                <input type="radio" name="recipient" value="{{_id}}" id="">{{firstName}}
-                {{else}}
+            <div class="form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="recipient" value="{{_id}}">
+                {{addressLine1}} {{addressLine2}}, {{city}}, {{state}}, {{zipCode}}
+            </label>
+            </div>
+           {{else}}
+            <div class="alert alert-primary" role="alert">
                 You have no recipients
+            </div>
             {{/each}}
-            
+
         </div>
-        <input type="checkbox" name="useNewAddress" id="useNewAddress">Use a new Address?
+        <div class="form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" name="useNewAddress" id="useNewAddress" type="checkbox"> Use a new Address?
+            </label>
+        </div>
         <div id="newAddressForm" class="d-none">
-            <label for="firstName">First Name</label>
-            <input type="text" name="firstName" id="firstName">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" name="firstName" id="firtstName">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" name="lastName" id="lastName">
+            </div>
 
-            <label for="lastName">Last Name</label>
-            <input type="text" name="lastName" id="lastName">
+            <div class="form-group">
+                <label for="addressLine1">Address Line 1</label>
+                <input type="text" class="form-control" name="addressLine1" id="addressLine1">
+            </div>
 
-            <label for="addressLine1">Address Line 1</label>
-            <input type="text" name="addressLine1" id="addressLine1">
-
-            <label for="addressLine1">Address Line 2</label>
-            <input type="text" name="addressLine2" id="addressLine2">
-
-            <label for="city">City</label>
-            <input type="text" name="city" id="city">
-
-            <label for="state">State</label>
-            <input type="text" name="state" id="state">
-
-            <label for="country">Country</label>
-            <input type="text" name="country" id="country">
-
-            <label for="zipCode">Zip Code</label>
-            <input type="text" name="zipCode" id="zipCode">
-
-            <label for="phoneNumber">Phone Number</label>
-            <input type="text" name="phoneNumber" id="phoneNumber">
+            <div class="form-group">
+                <label for="addressLine1">Address Line 2</label>
+                <input type="text" class="form-control" name="addressLine2" id="addressLine2">
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" name="city" id="city">
+            </div>
+            <div class="form-group">
+                <label for="state">State</label>
+                <input type="text" class="form-control" name="state" id="state">
+            </div>
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input type="text" class="form-control" name="country" id="country">
+            </div>
+            <div class="form-group">
+                <label for="zipCode">Zip Code</label>
+                <input type="text" class="form-control" name="zipCode" id="zipCode">
+            </div>
+            <div class="form-group">
+                <label for="phoneNumber">Phone Number</label>
+                <input type="text" class="form-control" name="phoneNumber" id="phoneNumber">
+            </div>
         </div>
 
         <div>
             <h3>Credit Card Info</h3>
-            <label for="cardNumber"></label>
-            <input type="text" id="cardNumber">
+            <div class="form-group">
+                <label for="cardNumber">Card Number</label>
+                <input type="text" class="form-control" id="cardNumber">
+            </div>
 
-            <label for="validDate"></label>
-            <input type="date" id="validDate">
-
-            <label for="CVV"></label>
-            <input type="text" id="CVV">
+            <div class="form-group">
+                <label for="validDate">Valide Date</label>
+                <input type="date" class="form-control" id="validDate">
+            </div>
+            <div class="form-group">
+                <label for="CVV">CVV</label>
+                <input type="text" class="form-control" id="CVV">
+            </div>
         </div>
-        
 
-        <h3>Cart details</h3>
-        <ul>
-            {{#each cart}}
-                <li>{{product.name}} ----- ${{product.price}} -- {{product.quantity}}</li>
-            {{/each}}
-            <p>${{totalPrice}}</p>
-        </ul>
+        <div class="cart-details">
+            <h3>Cart details</h3>
+            <table id="cartTable" class="table table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th class="w-50">Product</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Quantity</th>
+                        <th class="text-center">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each cart}}
+                    <tr>
+                        <td data-th="Product">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <h4 class="nomargin">{{{product.name}}}</h4>
+                                    <p>{{{product.description}}}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center" data-th="Price">${{product.price}}</td>
+                        <td class="text-center" data-th="Quantity">
+                            {{{quantity}}}
+                        </td>
+                        <td data-th="Subtotal" class="text-center">${{multiply product.price quantity}}</td>
+                    </tr>
+                    {{/each}}
 
-        <button id="submitOderButton">Checkout</button>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="hidden-xs"></td>
+                        <td class="hidden-xs text-center">
+                            <strong>Total ${{totalPrice}}</strong>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <button class="btn btn-primary float-right clearfix" id="submitOderButton">Checkout</button>
 
     </form>
 </main>

@@ -3,7 +3,13 @@
         <div class="row">
             {{#each products}}
             <div class="card product_card">
-                <img src="{{featuredImage}}" alt="Card image cap">
+                {{#if featuredImage}}
+                <img src="{{featuredImage}}" alt="Card image cap"> 
+                {{else}}
+                <img data-src="holder.js/350x200?text=No Image" alt="Card image cap"> 
+                {{/if}}
+
+                <a href="/product/{{_id}}">{{name}}</a>
                 <div class="d-flex justify-content-between">
                     <span>${{price}}</span>
                     <a href="#" data-id="{{_id}}" class="addToCart">Add to cart</a>

@@ -43,10 +43,11 @@
                         <button class="btn btn-outline-success my-2 my-sm-0" id="loginButton" type="submit">Login</button>
                         <button class="btn btn-outline-info ml-2 my-2 my-sm-0" id="registerModalButton" data-toggle="modal" data-target="#registrationModel">Register</button>
                     </form>
-                    <a id="accountName" href="{{#if user._id}}/user/{{else}}#{{/if}}" class="text-white">{{#if user._id}}Hello, {{{user.firstName}}}{{else}}{{/if}}</a>
+                    <a id="accountName" href="{{#if user._id}}/user/{{else}}#{{/if}}" class="text-white">{{#if user._id}}Hello, {{{user.profile.firstName}}}{{else}}{{/if}}</a>
+                    <a id="logout" class="text-white ml-2 {{#unless user._id}}d-none{{/unless}}" href="/logout">Logout</a>
                     <a class="ml-1" href="/cart">
                         <i class="fa fa-shopping-cart text-white" aria-hidden="true"></i>
-                        <span id="shoppingNumber" class="text-white">({{cart.length}})</span>
+                        <span id="shoppingNumber" class="text-white">{{#if cart.length}}({{cart.length}}){{/if}}</span>
                     </a>
                 </div>
             </div>

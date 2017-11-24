@@ -5,44 +5,44 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputEmail">Email</label>
-            <input type="email" class="form-control" value="{{user.email}}" id="inputEmail" placeholder="Email">
+            <input type="email" class="form-control" name="email" value="{{user.email}}" id="inputEmail" placeholder="Email">
         </div>
 
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputUsername">Username</label>
-            <input type="text" class="form-control" id="inputUsername" value="{{user.username}}" placeholder="Username">
+            <input type="text" class="form-control" id="inputUsername" name="username" value="{{user.username}}" placeholder="Username">
         </div>
         <div class="form-group col-md-6">
             <label for="inputPhone">Phone Number</label>
-            <input type="text" class="form-control" id="inputPhone" value="{{user.mobilePhone}}" placeholder="Phone Number">
+            <input type="text" class="form-control" id="inputPhone" name="phoneNumber" value="{{user.mobilePhone}}" placeholder="Phone Number">
         </div>
     </div>
     <div class="form-group">
         <label for="inputAddress">Address</label>
-        <input type="text" class="form-control" id="inputAddress" value="{{user.addressLine1}}" placeholder="1234 Main St">
+        <input type="text" class="form-control" id="inputAddress" name="addressLine1" value="{{user.homeAddress.addressLine1}}" placeholder="1234 Main St">
     </div>
     <div class="form-group">
         <label for="inputAddress2">Address 2</label>
-        <input type="text" class="form-control" id="inputAddress2" value="{{user.addressLine2}}" placeholder="Apartment, studio, or floor">
+        <input type="text" class="form-control" id="inputAddress2" name="addressLine2" value="{{user.homeAddress.addressLine2}}" placeholder="Apartment, studio, or floor">
     </div>
     <div class="form-row">
         <div class="form-group col-md-3">
             <label for="inputCity">City</label>
-            <input type="text" class="form-control" value="{{user.city}}" id="inputCity">
+            <input type="text" class="form-control" name="city" value="{{user.homeAddress.city}}" id="inputCity">
         </div>
         <div class="form-group col-md-3">
             <label for="inputState">State</label>
-            <input type="text" class="form-control" value="{{user.state}}" id="inputState">
+            <input type="text" class="form-control" name="state" value="{{user.homeAddress.state}}" id="inputState">
         </div>
         <div class="form-group col-md-3">
             <label for="inputZip">Zip</label>
-            <input type="text" class="form-control" value="{{user.zipCode}}" id="inputZip">
+            <input type="text" class="form-control" name="zipCode" value="{{user.homeAddress.zipCode}}" id="inputZip">
         </div>
         <div class="form-group col-md-3">
             <label for="inputZip">Country</label>
-            <input type="text" class="form-control" value="{{user.country}}" id="inputCountry">
+            <input type="text" class="form-control" name="country" value="{{user.homeAddress.country}}" id="inputCountry">
         </div>
     </div>
 
@@ -52,30 +52,34 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputFirstName">First Name</label>
-            <input type="text" class="form-control" id="inputFirstName" value="{{user.firstName}}" placeholder="First Name">
+            <input type="text" class="form-control" name="firstName" id="inputFirstName" value="{{user.profile.firstName}}" placeholder="First Name">
         </div>
         <div class="form-group col-md-6">
             <label for="inputLastName">Last Name</label>
-            <input type="text" class="form-control" id="inputLastName" value="{{user.lastName}}" placeholder="Last Name">
+            <input type="text" class="form-control" name="lastName" id="inputLastName" value="{{user.profile.lastName}}" placeholder="Last Name">
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputBirthday">Birthday</label>
-            <input type="date" class="form-control" id="inputBirthday" value="{{user.profile.dateOfBirth}}" placeholder="Birthday">
+            <input type="date" class="form-control" name="dateOfBirth" id="inputBirthday" value="{{user.profile.dateOfBirth}}" placeholder="Birthday">
         </div>
         <div class="form-group col-md-6">
             <label for="inputAge">Age</label>
-            <input type="number" class="form-control" value="{{user.profile.age}}" id="inputAge" placeholder="Age">
+            <input type="number" class="form-control" name="age" value="{{user.profile.age}}" id="inputAge" placeholder="Age">
         </div>
     </div>
     <div class="form-group">
         <label for="profileImage">Upload Profile Image</label>
         <div class="file-upload">
             <label class="custom-file">
-                <input type="file" id="profileImage" class="custom-file-input">
+                <input type="file" id="profileImage" name="profile" value="{{user.profile.profileImage}}" class="custom-file-input">
                 <span class="custom-file-control">{{user.profile.profileImage}}</span>
             </label>
         </div>
+        <img class="mt-2" src="/{{user.profile.profileImage}}" width="80" height="80" />
     </div>
+    <input type="hidden" name="_id" value="{{user._id}}">
+    <input type="hidden" name="profileImage" value="{{user.profile.profileImage}}">
+    <button id="save-user-btn" type="submit" class="btn btn-primary">Update</button>
 </form>

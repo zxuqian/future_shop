@@ -39,6 +39,11 @@ router.post("/login", passport.authenticate('local'), async(req, res) => {
     res.status(200).json(req.user)
 })
 
+router.get("/logout", async(req, res) => {
+    req.logout()
+    res.redirect("/")
+})
+
 router.get("/isLoggedIn", async(req, res) => {
     res.status(200).json(req.user != null)
 })

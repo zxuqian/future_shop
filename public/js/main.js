@@ -14,8 +14,10 @@ $(document).ready(() => {
             data: userObj,
             success(data) {
                 console.log(data)
-                $("#accountName").text(`Hello, ${data.firstName}`)
+                $("#accountName").text(`Hello, ${data.profile.firstName}`)
                 $("#accountName").attr("href", "/user")
+                $("#loginForm").addClass("d-none")
+                $("#logout").removeClass("d-none")
             },
             error(jxr) {
                 // User name or password not correct
@@ -49,8 +51,14 @@ $(document).ready(() => {
         let formData = new FormData(registrationForm)
 
         let userObj = {}
+        userObj.profile = {}
         for(entry of formData) {
-            userObj[entry[0]] = entry[1]
+            if(entry[0] === "firstName" || entry[0] === "lastName") {
+                userObj.profile[entry[0]] = entry[1]
+            } else {
+                userObj[entry[0]] = entry[1]
+            }
+            
         }
         jQuery.ajax("/register", {
             method: "post",

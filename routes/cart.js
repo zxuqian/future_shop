@@ -50,6 +50,9 @@ router.get("/", async(req, res) => {
         let cart = []
         if(req.session.cart) {
             cart = req.session.cart
+        } else {
+            res.redirect("/")
+            return
         }
         let categories = categoryData.getAllCategories()
         res.render("cart", {
@@ -105,6 +108,9 @@ router.get("/checkout", async(req, res) => {
         let cart = []
         if(req.session.cart) {
             cart = req.session.cart
+        } else {
+            res.redirect("/")
+            return
         }
         let recipients = await recipientData.getRecipientsByUserId(req.user._id)
         res.render("checkout", {
@@ -118,6 +124,9 @@ router.get("/checkout", async(req, res) => {
             helpers: {
                 scripts() {
                     return `<script src="/public/js/cart.js"></script>`
+                },
+                multiply(a, b) {
+                    return a * b
                 }
             }
         })
@@ -138,7 +147,6 @@ router.post("/checkout", async(req, res) => {
         if(req.session.cart) {
             cart = req.session.cart
         }
-
         let recipientId = req.body.recipient
         if(req.body.useNewAddress === 'on') {
             let recipient = {
@@ -177,7 +185,11 @@ router.post("/checkout", async(req, res) => {
 
         await orderData.addOrder(req.user._id, order)
 
-        res.render("thankyou")
+        req.session.cart = []
+
+        res.render("thankyou", {
+            user: req.user
+        })
     } catch (e) {
         res.status(500).send("Error get the cart: " + e)
     }
