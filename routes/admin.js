@@ -26,7 +26,7 @@ var hbs = require('express-handlebars').create({
 });
 
 router.get("/", async (req, res) => {
-    res.render("admin/dashboard", {layout: "admin"})
+    res.redirect("/admin/user")
 })
 
 

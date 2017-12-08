@@ -13,3 +13,9 @@ pids
 
 # Dependency Directories
 node_modules/
+
+# pcitures
+site_content/
+
+# this file
+.gitignore

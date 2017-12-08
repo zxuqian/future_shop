@@ -1,0 +1,19 @@
+.container {
+    max-width: 960px;
+}
+
+.shop .row, .shop .row * {
+    display: block;
+    page-break-before: auto; 
+    page-break-after: auto; 
+    page-break-inside: avoid;
+}
+
+footer {
+    clear: both;
+}
+
+/** Product Detail Page **/
+.productDetails {
+    page-break-before: always; 
+}

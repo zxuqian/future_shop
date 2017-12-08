@@ -2,15 +2,15 @@
     <table id="cartTable" class="table table-hover table-condensed">
         <thead>
             <tr>
-                <th class="w-50">Product</th>
-                <th class="text-center">Price</th>
-                <th class="text-center">Quantity</th>
-                <th class="text-center">Subtotal</th>
+                <th scope="col" class="w-50">Product</th>
+                <th scope="col" class="text-center">Price</th>
+                <th scope="col" class="text-center">Quantity</th>
+                <th scope="col" class="text-center">Subtotal</th>
             </tr>
         </thead>
         <tbody>
             {{#each cart}}
-            <tr>
+            <tr scope="row">
                 <td data-th="Product">
                     <div class="row">
                         <div class="col-sm-10">
@@ -19,29 +19,24 @@
                         </div>
                     </div>
                 </td>
-                <td class="text-center" data-th="Price">${{product.price}}</td>
+                <td class="text-center" data-th="Price">$<span data-id="{{{product._id}}}" class="unitPrice">{{product.price}}</span></td>
                 <td class="text-center" data-th="Quantity">
-                    <input type="number" class="updateQuantity form-control text-center" data-id="{{{product._id}}}" value="{{{quantity}}}">
+                    <input type="number" id="quantity" class="updateQuantity form-control text-center" data-id="{{{product._id}}}" value="{{{quantity}}}">
                 </td>
-                <td data-th="Subtotal" class="text-center">${{multiply product.price quantity}}</td>
+                <td data-th="Subtotal" class="text-center">$<span data-id="{{{product._id}}}" class="subTotal">{{multiply product.price quantity}}</span></td>
             </tr>
             {{/each}}
 
         </tbody>
         <tfoot>
-            <tr class="visible-xs">
-                <td class="text-center">
-                    <strong>${{totalPrice}}</strong>
-                </td>
-            </tr>
             <tr>
                 <td>
                     <a href="/" class="btn btn-warning">
                         <i class="fa fa-angle-left"></i> Continue Shopping</a>
                 </td>
-                <td colspan="2" class="hidden-xs"></td>
+                <td colspan="1" class="hidden-xs"></td>
                 <td class="hidden-xs text-center">
-                    <strong>Total ${{totalPrice}}</strong>
+                    <strong>Total $</strong><strong id="totalPrice">{{totalPrice}}</strong>
                 </td>
                 <td>
                     <a id="checkoutButton" href="/cart/checkout" class="btn btn-success btn-block">Checkout

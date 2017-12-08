@@ -9,6 +9,10 @@ $(document).ready(() => {
             password: formData.get("password")
         }
 
+        if(!userObj.username || !userObj.password) {
+            toastr.error('Please enter username and password', null, {timeOut: 2000, positionClass: "toast-top-right",})
+        }
+
         jQuery.ajax("/login", {
             method: "post",
             data: userObj,
@@ -20,6 +24,7 @@ $(document).ready(() => {
                 $("#logout").removeClass("d-none")
             },
             error(jxr) {
+                toastr.error('Username or password not correct', null, {timeOut: 2000, positionClass: "toast-top-right",})
                 // User name or password not correct
             },
             complete(jxr, e) {

@@ -33,8 +33,8 @@ body {
 }
 
 .product_card {
-    float: left;
-    width: 33.333%;
+    /*float: left;
+    width: 33.333%; */
     padding: .75rem;
     margin-bottom: 2rem;
     border: 0;
@@ -42,8 +42,8 @@ body {
 
 .product_card > img {
     margin-bottom: .75rem;
-    width: 350px;
-    height: 200px;
+    display: block;
+    width: 100%;
 }
 
 .product_card-text {
@@ -64,3 +64,18 @@ footer p {
 }
 
 /* User Profile */
+
+/* mobile */
+@media only screen and (max-width: 576px) {
+
+}
+
+@media only screen and (max-width: 720px) {
+    #cart_1 {
+        display: block;
+    }
+
+    #cart_2 {
+        display: none;
+    }
+}

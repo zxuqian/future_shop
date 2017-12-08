@@ -77,7 +77,9 @@
                 <span class="custom-file-control">{{user.profile.profileImage}}</span>
             </label>
         </div>
+        {{#if user.profile.profileImage}}
         <img class="mt-2" src="/{{user.profile.profileImage}}" width="80" height="80" />
+        {{/if}}
     </div>
     <input type="hidden" name="_id" value="{{user._id}}">
     <input type="hidden" name="profileImage" value="{{user.profile.profileImage}}">

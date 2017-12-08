@@ -10,6 +10,18 @@ $(document).ready(() => {
         } else if(quantity < 0) {
 
         } else {
+            let unitPrice = $("[data-id='" + productId + "']").filter(".unitPrice").text()
+            let quantity = $("[data-id='" + productId + "']").filter(".updateQuantity").val()
+            let subTotal = $("[data-id='" + productId + "']").filter(".subTotal")
+            subTotal.text(unitPrice * quantity)
+
+            let sum = 0;
+            $(".subTotal").each((i, val) => {
+                sum += Number.parseFloat($(val).text())
+            })
+            let totalPrice = $("#totalPrice").text(sum)
+
+
             jQuery.ajax("/cart", {
                 method: "put",
                 data: {
@@ -18,12 +30,14 @@ $(document).ready(() => {
                 },
                 beforeSend() {
                     $(input).attr("disabled", true)
+                    $("#checkoutButton").attr("disabled", true)
                 },
                 success(data) {
     
                 },
                 complete() {
                     $(input).attr("disabled", false)
+                    $("#checkoutButton").attr("disabled", false)
                 }
             })
         }

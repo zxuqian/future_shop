@@ -2,17 +2,17 @@
     <div class="container">
         <div class="row">
             {{#each products}}
-            <div class="card product_card">
+            <div class="card product_card col-md-6 col-xl-4">
                 {{#if featuredImage}}
-                <img src="{{featuredImage}}" alt="Card image cap"> 
+                <img src="/{{featuredImage}}" class="" alt="{{name}}"> 
                 {{else}}
-                <img data-src="holder.js/350x200?text=No Image" alt="Card image cap"> 
+                <img data-src="holder.js/520x693?text=No Image" alt="Card image cap"> 
                 {{/if}}
 
-                <a href="/product/{{_id}}">{{name}}</a>
-                <div class="d-flex justify-content-between">
-                    <span>${{price}}</span>
-                    <a href="#" data-id="{{_id}}" class="addToCart">Add to cart</a>
+                <a class="text-dark text-truncate" href="/product/{{_id}}">{{name}}</a>
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                    <span class="price">${{price}}</span>
+                    <a href="#" data-id="{{_id}}" class="btn btn-primary addToCart">Add to cart</a>
                 </div>
             </div>
             {{/each}}
