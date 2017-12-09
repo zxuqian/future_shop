@@ -27,7 +27,7 @@ body {
 
 .shop {
     min-height: 50rem;
-    padding-top: 3rem;
+    padding-top: 1.5rem;
     padding-bottom: 3rem;
     background-color: #f7f7f7;
 }
@@ -57,10 +57,32 @@ body {
 footer {
     padding-top: 3rem;
     padding-bottom: 3rem;
+    background: #343a40;
 }
 
 footer p {
     margin-bottom: .25rem;
+    color: #fff;
+}
+
+/* Animations and effects */
+.product_card img:hover {
+    /*box-shadow: 0 0 5px 5px #cae3f8;*/
+    transform: scale(1.03)
+}
+
+a:hover {
+    text-decoration: none
+}
+
+.back-to-top {
+    background: #007bff;
+    border-radius: 50px;
+    color: white;
+    padding: 14px;
+    position: fixed;
+    bottom: 40px;
+    right: 50px;
 }
 
 /* User Profile */
