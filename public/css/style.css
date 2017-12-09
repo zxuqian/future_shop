@@ -40,7 +40,7 @@ body {
     border: 0;
 }
 
-.product_card > img {
+.product_card img {
     margin-bottom: .75rem;
     display: block;
     width: 100%;

@@ -1,7 +1,7 @@
 <main role="main">
     <div class="container my-4 d-flex justify-content-center">
         <form action="/product/search" method="post" class="form-inline row my-2 my-lg-0 col-12 justify-content-center">
-            <input class="form-control col-8 mr-2" name="searchTerm" type="text" placeholder="Search" aria-label="Search">
+            <input class="form-control col-8 mr-2" name="searchTerm" type="text" placeholder="Search products..." aria-label="Search">
             <button class="btn btn-primary my-2" id="searchButton" type="submit">Search</button>
         </form>
     </div>
@@ -25,7 +25,7 @@
                 {{#each products}}
                 <div class="card product_card col-md-6 col-xl-4">
                     {{#if featuredImage}}
-                    <img class="align-self-center" src="/{{featuredImage}}" class="" alt="{{name}}"> 
+                    <a href="/product/{{_id}}" title="{{name}}"><img class="align-self-center" src="/{{featuredImage}}" class="" alt="{{name}}"></a>
                     {{else}}
                     <img data-src="holder.js/520x693?text=No Image" alt="Card image cap"> 
                     {{/if}}

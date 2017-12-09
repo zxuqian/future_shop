@@ -4,7 +4,7 @@
             {{#each products}}
             <div class="card product_card col-md-6 col-xl-4">
                 {{#if featuredImage}}
-                <img src="/{{featuredImage}}" class="" alt="{{name}}"> 
+                <a href="/product/{{_id}}" title="{{name}}"><img src="/{{featuredImage}}" class="" alt="{{name}}"></a> 
                 {{else}}
                 <img data-src="holder.js/520x693?text=No Image" alt="Card image cap"> 
                 {{/if}}
