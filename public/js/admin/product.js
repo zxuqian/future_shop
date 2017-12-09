@@ -19,8 +19,10 @@ $(document).ready(() => {
             method,
             data: category,
             success(data) {
-                //console.log(data)
                 $("#category_management").html(data)
+                $("#selectParentCategory").html($("#parentCategory").html())
+                //console.log($("#selectParentCategory option:first-child"))
+                $("#selectParentCategory option:first-child").remove()
 
             },
             complete(j, e) {
@@ -39,6 +41,8 @@ $(document).ready(() => {
             success(data) {
                 //console.log(data)
                 $("#category_management").html(data)
+                $("#selectParentCategory").html($("#parentCategory").html())
+                $("#selectParentCategory option:first-child").remove()
             },
             complete(j, e) {
                 console.log(e)
@@ -80,6 +84,15 @@ $(document).ready(() => {
     $("#addProductModal").on('show.bs.modal', () => {
         let cateId = $("#selectParentCategory option")[0].value
         changeSubCategorySelection(cateId)
+    })
+
+    // add product image
+    $("#productImage").on('change', (event) => {
+        let files = event.currentTarget.files
+        //alert(file.name)
+        if(!files[0]) return
+        let file = files[0]
+        $(".custom-file-control").text(file.name)
     })
 
     // add product
@@ -187,6 +200,10 @@ $(document).ready(() => {
                 console.log(e + " from delete function")
             }
         })
+    })
+
+    $("#addProductModal").on('hidden.bs.modal', () => {
+        $("#save-product-form")[0].reset()
     })
 
 
