@@ -54,10 +54,15 @@ body {
     color: #b80e0ed7;
 }
 
+main {
+    height: 100%;
+}
+
 footer {
     padding-top: 3rem;
     padding-bottom: 3rem;
     background: #343a40;
+    margin-top: 3rem;
 }
 
 footer p {
