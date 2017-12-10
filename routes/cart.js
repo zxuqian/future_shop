@@ -61,9 +61,9 @@ router.get("/", async(req, res) => {
             message,
             categories,
             user: req.user,
-            totalPrice: cart.reduce((previous, current, index) => {
+            totalPrice: (cart.reduce((previous, current, index) => {
                 return previous += (parseInt(current.quantity) * parseFloat(current.product.price))
-            }, 0),
+            }, 0)).toFixed(2),
             helpers: {
                 scripts() {
                     return `<script src="/public/js/cart.js"></script>`
@@ -118,9 +118,9 @@ router.get("/checkout", async(req, res) => {
             cart,
             recipients,
             user: req.user,
-            totalPrice: cart.reduce((previous, current, index) => {
+            totalPrice: (cart.reduce((previous, current, index) => {
                 return previous += (parseInt(current.quantity) * parseFloat(current.product.price))
-            }, 0),
+            }, 0)).toFixed(2),
             helpers: {
                 scripts() {
                     return `<script src="/public/js/cart.js"></script>`

@@ -13,13 +13,13 @@ $(document).ready(() => {
             let unitPrice = $("[data-id='" + productId + "']").filter(".unitPrice").text()
             let quantity = $("[data-id='" + productId + "']").filter(".updateQuantity").val()
             let subTotal = $("[data-id='" + productId + "']").filter(".subTotal")
-            subTotal.text(unitPrice * quantity)
+            subTotal.text((unitPrice * quantity).toFixed(2))
 
             let sum = 0;
             $(".subTotal").each((i, val) => {
                 sum += Number.parseFloat($(val).text())
             })
-            let totalPrice = $("#totalPrice").text(sum)
+            let totalPrice = $("#totalPrice").text(sum.toFixed(2))
 
 
             jQuery.ajax("/cart", {
